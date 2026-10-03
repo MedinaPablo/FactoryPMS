@@ -1,0 +1,6 @@
+{
+  "name": "Medina Factory - Presupuestos de Producción",
+  "description": "Sistema de gestión de costos, productos y presupuestos de producción multi-emprendimiento.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

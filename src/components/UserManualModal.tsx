@@ -553,7 +553,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({ isOpen, onClos
               <div className="space-y-4">
                 <div className="border-b border-slate-200 pb-3">
                   <span className="text-[11px] font-bold text-cyan-600 uppercase tracking-wider font-mono">
-                    Capítulo 9 (Seguridad)
+                    Capítulo 9 (Seguridad y Privacidad)
                   </span>
                   <h2 className="text-xl font-extrabold text-slate-900 mt-1">
                     Módulo de Seguridad, Roles y Aislamiento de Datos
@@ -564,21 +564,34 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({ isOpen, onClos
                   <strong>Aislamiento Estricto de Datos:</strong> Ningún costo, producto, presupuesto u orden de producción de una fábrica se mezcla con otra. Cada empresa tiene su propio espacio de datos segregado por <code>ventureId</code>.
                 </div>
 
-                <h3 className="text-base font-bold text-slate-900">Jerarquía de Usuarios</h3>
+                <h3 className="text-base font-bold text-slate-900">Jerarquía y Funciones de Usuarios</h3>
                 <div className="space-y-2 text-xs">
                   <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl">
                     <span className="font-bold text-slate-900 block">👑 Usuario Propietario (root)</span>
-                    <span className="font-mono text-cyan-700 font-bold block mb-1">Usuario: root | Contraseña: Adm1807++</span>
+                    <span className="text-[11px] text-slate-500 block mb-1">Cuenta confidencial de gestión global del sistema</span>
                     Accede a todas las funciones del sistema. Puede crear nuevos emprendimientos, asignar administradores, alternar entre cualquier fábrica y realizar copias de seguridad de la base de datos completa.
                   </div>
                   <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl">
                     <span className="font-bold text-slate-900 block">🛡️ Administrador de Emprendimiento (admin)</span>
-                    Control absoluto sobre los costos, recetas, presupuestos y órdenes de planta de su propia fábrica. Puede crear y dar de baja <strong>Usuarios Invitados</strong> con sus respectivas contraseñas.
+                    Control absoluto sobre los costos, recetas, presupuestos y órdenes de planta de su propia fábrica. Puede crear <strong>Usuarios Invitados</strong>, editar sus nombres y correos, y <strong>restablecer sus contraseñas</strong>. Al crear usuarios nuevos, la información de otros emprendimientos permanece completamente invisible y oculta.
                   </div>
                   <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl">
                     <span className="font-bold text-slate-900 block">👤 Usuario Invitado (invitado)</span>
                     Perfil diseñado para vendedores o personal de atención al cliente. Puede consultar el catálogo, confeccionar presupuestos, consultar el estado de fabricación y descargar PDFs oficiales, sin permisos para alterar costos de fábrica ni recetas.
                   </div>
+                </div>
+
+                <h3 className="text-base font-bold text-slate-900 pt-2">Gestión de Contraseñas y Privacidad</h3>
+                <div className="space-y-2 text-xs text-slate-600">
+                  <p>
+                    • <strong>Cambio de Contraseña Personal:</strong> Cualquier usuario con sesión activa puede cambiar su contraseña desde el menú de perfil en el extremo superior derecho.
+                  </p>
+                  <p>
+                    • <strong>Restablecimiento por Administradores:</strong> El administrador de cada fábrica puede blanquear y asignar una nueva clave a cualquier usuario invitado de su emprendimiento.
+                  </p>
+                  <p>
+                    • <strong>Privacidad de Emprendimientos:</strong> Los administradores solo interactúan con su propia fábrica y no tienen visibilidad de los nombres o existence de otros talleres en el sistema.
+                  </p>
                 </div>
               </div>
             )}

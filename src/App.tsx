@@ -12,6 +12,7 @@ import { VenturesManager } from './components/VenturesManager';
 import { UsersManager } from './components/UsersManager';
 import { DatabaseToolsModal } from './components/DatabaseToolsModal';
 import { UserManualModal } from './components/UserManualModal';
+import { ChangePasswordModal } from './components/ChangePasswordModal';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(() => storage.getCurrentUser());
@@ -19,6 +20,7 @@ export default function App() {
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
   const [isDbModalOpen, setIsDbModalOpen] = useState(false);
   const [isManualModalOpen, setIsManualModalOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
   // Database snapshot state
   const [ventures, setVentures] = useState<Venture[]>(() => storage.getVentures());
@@ -177,6 +179,14 @@ export default function App() {
     refreshActiveVentureData(active);
   };
 
+  const handlePasswordChanged = (newPassword: string) => {
+    if (currentUser) {
+      const updated = storage.updateUserPassword(currentUser.id, newPassword);
+      setCurrentUser({ ...updated });
+      setUsers(storage.getUsers());
+    }
+  };
+
   // If not authenticated, render Login/Auth view
   if (!currentUser) {
     return <AuthView users={users} ventures={ventures} onLogin={handleLogin} />;
@@ -207,6 +217,7 @@ export default function App() {
         onLogout={handleLogout}
         onOpenDatabaseTools={() => setIsDbModalOpen(true)}
         onOpenUserManual={() => setIsManualModalOpen(true)}
+        onOpenChangePassword={() => setIsChangePasswordOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -317,6 +328,16 @@ export default function App() {
         isOpen={isManualModalOpen}
         onClose={() => setIsManualModalOpen(false)}
       />
+
+      {/* Change Password Modal */}
+      {currentUser && (
+        <ChangePasswordModal
+          isOpen={isChangePasswordOpen}
+          currentUser={currentUser}
+          onClose={() => setIsChangePasswordOpen(false)}
+          onPasswordChanged={handlePasswordChanged}
+        />
+      )}
 
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-4 mt-auto">

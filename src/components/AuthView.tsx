@@ -9,8 +9,8 @@ interface AuthViewProps {
 }
 
 export const AuthView: React.FC<AuthViewProps> = ({ users, ventures, onLogin }) => {
-  const [username, setUsername] = useState('root');
-  const [password, setPassword] = useState('Adm1807++');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,7 +40,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ users, ventures, onLogin }) 
   };
 
   const getVentureName = (vId: string | null) => {
-    if (!vId) return 'Acceso Total (Todos los emprendimientos)';
+    if (!vId) return 'Emprendimiento';
     const v = ventures.find((item) => item.id === vId);
     return v ? v.name : 'Emprendimiento';
   };
@@ -86,7 +86,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ users, ventures, onLogin }) 
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all font-mono"
-                  placeholder="ej. root o admin_pan"
+                  placeholder="ej. admin_pan o admin_empanadas"
                 />
               </div>
             </div>
@@ -96,7 +96,6 @@ export const AuthView: React.FC<AuthViewProps> = ({ users, ventures, onLogin }) 
                 <label className="block text-xs font-semibold text-slate-300">
                   Contraseña
                 </label>
-                <span className="text-[11px] text-cyan-400 font-mono">Root: Adm1807++</span>
               </div>
               <div className="relative">
                 <input
@@ -130,31 +129,6 @@ export const AuthView: React.FC<AuthViewProps> = ({ users, ventures, onLogin }) 
             </div>
 
             <div className="space-y-2">
-              {/* Root Account */}
-              <button
-                type="button"
-                onClick={() => handleQuickLogin('root', 'Adm1807++')}
-                className="w-full text-left p-2.5 rounded-xl bg-cyan-950/40 hover:bg-cyan-900/40 border border-cyan-800/50 hover:border-cyan-500/80 transition-all flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-600/30 text-cyan-300 flex items-center justify-center font-bold">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-bold text-white group-hover:text-cyan-300">root</span>
-                      <span className="text-[10px] px-1.5 py-0.2 rounded bg-cyan-500 text-slate-950 font-bold uppercase">
-                        Propietario
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-slate-400 font-mono">Adm1807++ (Acceso Total)</p>
-                  </div>
-                </div>
-                <span className="text-[11px] text-cyan-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-0.5">
-                  Entrar <Check className="w-3 h-3" />
-                </span>
-              </button>
-
               {/* Admin Panadería */}
               <button
                 type="button"

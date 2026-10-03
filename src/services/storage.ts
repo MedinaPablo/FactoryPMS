@@ -1294,7 +1294,26 @@ class StorageService {
     } else {
       this.state.users.push(user);
     }
+    // If the saved user is the currently logged-in user, keep session in sync
+    if (this.state.currentUser && this.state.currentUser.id === user.id) {
+      this.state.currentUser = { ...user };
+      localStorage.setItem(SESSION_USER_KEY, JSON.stringify(this.state.currentUser));
+    }
     this.persist();
+  }
+
+  updateUserPassword(userId: string, newPassword: string): User {
+    const user = this.state.users.find((u) => u.id === userId);
+    if (!user) {
+      throw new Error('Usuario no encontrado.');
+    }
+    user.password = newPassword;
+    if (this.state.currentUser && this.state.currentUser.id === userId) {
+      this.state.currentUser = { ...user };
+      localStorage.setItem(SESSION_USER_KEY, JSON.stringify(this.state.currentUser));
+    }
+    this.persist();
+    return user;
   }
 
   deleteUser(id: string) {

@@ -277,15 +277,26 @@ Medina Factory permite exportar la base de datos completa como un archivo compri
         └───────────────────────────────────────────────┘
 ```
 
-### 9.2 Aislamiento Estricto de Datos
-Cada emprendimiento funciona como una entidad completamente independiente identificada por su `ventureId`. Ningún dato de costos, fórmulas o pedidos de Panadería se mezcla con Empanadas o Cartelería.
+### 9.2 Aislamiento Estricto de Datos y Privacidad
+- Cada emprendimiento funciona como una entidad completamente independiente identificada por su `ventureId`. Ningún dato de costos, fórmulas o pedidos de Panadería se mezcla con Empanadas o Cartelería.
+- **Protección de Datos Multi-Tenant**: Al dar de alta un nuevo usuario, el administrador únicamente interactúa con su propio entorno fabril, manteniéndose los nombres y existencia de los demás emprendimientos completamente ocultos.
+- **Confidencialidad de la Cuenta Root**: Los datos y credenciales del usuario propietario (`root`) no se exponen en la pantalla de bienvenida ni en las listas de usuarios del sistema.
 
-### 9.3 Cómo el Administrador Crea Usuarios Invitados
-1. Inicie sesión con la cuenta de administrador de su fábrica (ej. `admin_empanadas`).
-2. Diríjase a la pestaña **Usuarios**.
-3. Haga clic en **`+ Crear Usuario Invitado`**.
-4. Ingrese el Nombre Completo, Nombre de Usuario y Contraseña personal.
-5. Presione **Guardar Usuario**. El invitado ya podrá ingresar con sus credenciales y estará restringido únicamente a su fábrica.
+### 9.3 Cambio de Contraseña de la Sesión Activa
+Cualquier usuario autenticado en el sistema (propietario, administrador o invitado) puede cambiar su contraseña en cualquier momento:
+1. Abra el menú de perfil de usuario en la esquina superior derecha.
+2. Seleccione **"Cambiar mi Contraseña"**.
+3. Ingrese su contraseña actual y defina la nueva contraseña (mínimo 4 caracteres).
+4. Confirme para actualizar de inmediato sus credenciales de acceso.
+
+### 9.4 Edición de Usuarios y Restablecimiento de Contraseñas por el Administrador
+El administrador de cada fábrica tiene facultades completas para gestionar a los miembros de su equipo:
+1. Diríjase a la pestaña **Usuarios**.
+2. Podrá crear nuevos usuarios invitados con su nombre completo, nombre de usuario y contraseña personal.
+3. Presione el botón **Editar** (`Edit2`) en cualquier usuario de su emprendimiento para:
+   - Modificar su **Nombre Completo**.
+   - Actualizar su **Correo Electrónico**.
+   - **Restablecer su Contraseña** si el usuario la olvidó o requiere blanqueo de clave.
 
 ---
 

@@ -19,7 +19,8 @@ import {
   Footprints,
   Briefcase,
   BookOpen,
-  HardHat
+  HardHat,
+  KeyRound
 } from 'lucide-react';
 import { User, Venture } from '../types';
 import { storage } from '../services/storage';
@@ -34,6 +35,7 @@ interface NavbarProps {
   onLogout: () => void;
   onOpenDatabaseTools: () => void;
   onOpenUserManual: () => void;
+  onOpenChangePassword: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -46,6 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onLogout,
   onOpenDatabaseTools,
   onOpenUserManual,
+  onOpenChangePassword,
 }) => {
   const [ventureMenuOpen, setVentureMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -316,6 +319,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
 
                   <div className="py-1">
+                    <button
+                      onClick={() => {
+                        onOpenChangePassword();
+                        setUserMenuOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-xs text-amber-300 hover:bg-slate-800 hover:text-amber-200 flex items-center gap-2 font-medium cursor-pointer"
+                    >
+                      <KeyRound className="w-4 h-4 text-amber-400" />
+                      <span>Cambiar mi Contraseña</span>
+                    </button>
+
                     <button
                       onClick={() => {
                         onOpenUserManual();
